@@ -17,18 +17,10 @@ def get_file_by_extension(target_folder: str, extensions: tuple):
 
 def ratio_list(input_list: list, ratio: float = 0.7):
     '''
-    separate list into two by ratio by selecting randomly
+    Separates a list into two by a given ratio, randomly selecting elements.
     '''
-    _cp = input_list.copy()
-    _ratio_num = math.floor(len(_cp) * ratio)
-    _ratio_list = []
-    _sel_count = _ratio_num
-    for _ in range(_ratio_num):
-        random_index = random.randint(0, (_sel_count - 1))
-        _sel_count -= 1
-        _sel = input_list[random_index]
-        _ratio_list.append(_sel)
-        input_list.pop(input_list.index(_sel))
-    return _ratio_list, input_list
-        
-
+    input_copy = input_list.copy()
+    selection_count = math.floor(len(input_copy) * ratio)
+    selected_list = random.sample(input_copy, selection_count)
+    remaining_list = [item for item in input_copy if item not in selected_list]
+    return selected_list, remaining_list
