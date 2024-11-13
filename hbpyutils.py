@@ -1,6 +1,9 @@
 import os
 import math
 import random
+import cv2
+import numpy as np
+
 
 def get_file_by_extension(target_folder: str, extensions: tuple):
     '''
