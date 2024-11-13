@@ -5,6 +5,15 @@ that i am too lazy to write!
 import cv2
 import numpy as np
 
+def screen_overlay(base: np.ndarray, overlay: np.ndarray):
+    '''
+    the screen overlay from photoshop incident
+    output = 1−(1−A)⋅(1−B)
+    '''
+    _base = base.astype(np.float32) / 255.0
+    _overlay = overlay.astype(np.float32) / 255.0
+    scr = (1.0 - (1.0 - _base) * (1.0 - _overlay))
+    return np.clip(scr * 255, 0, 255).astype(np.uint8) 
 
 def bgr2_3grey(image: np.ndarray):
     '''
